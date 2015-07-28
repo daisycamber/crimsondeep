@@ -15,6 +15,8 @@ var loadGame;
 var settings;
 var about;
 
+var clicker;
+
 bootState.prototype =
 {
     // Preload assets for boot
@@ -24,6 +26,8 @@ bootState.prototype =
         game.load.script('filter', 'https://cdn.rawgit.com/photonstorm/phaser/master/filters/Tunnel.js');
         game.load.image('logo', 'logo.png');
         game.load.image('about', 'credits.png');
+        game.load.audio('music', 'soundtrack.mp3');
+        game.load.audio('click', 'click.mp3');
         
         //
         
@@ -42,6 +46,9 @@ bootState.prototype =
     },
     // Create boot screen
     create:function() {
+        
+        clicker = game.add.audio('click');
+        
         // For loading screen
         background = game.add.sprite(0, 0, 'texture');
         background.width = 800;
@@ -50,12 +57,14 @@ bootState.prototype =
         filter = game.add.filter('Tunnel', 800, 600, background.texture);
         
         //	You have the following value to play with (default value is 2.0):
-        filter.origin = 1.0;
+        filter.origin = 4.0;
         
         background.filters = [filter];
         
+        var menuOpen = false;
         
-        text = game.add.text(game.world.centerX, game.world.centerY, "Holton Studios Presents...", { font: "65px Arial", fill: "#ffffff", align: "center" });
+        
+        text = game.add.text(game.world.centerX, game.world.centerY, "Holton Studios Presents", { font: "65px Arial", fill: "#ffffff", align: "center" });
         text.anchor.setTo(0.5, 0.5);
         text.alpha = 0;
         
@@ -81,7 +90,7 @@ bootState.prototype =
         newGame = game.add.text(20, 120, "New Game", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         newGame.alpha = 0;
         newGame.inputEnabled = true;
-        newGame.events.onInputOver.add(function(){newGame.fill = '#AEAEAE';}, this);
+        newGame.events.onInputOver.add(function(){newGame.fill = '#AEAEAE'; if(menuOpen) clicker.play();}, this);
         newGame.events.onInputOut.add(function(){newGame.fill = '#FFFFFF';}, this);
         newGame.events.onInputDown.add(function(){
                                        actionOnClick();
@@ -90,22 +99,22 @@ bootState.prototype =
         loadGame = game.add.text(20, 180, "Load Game", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         loadGame.alpha = 0;
         loadGame.inputEnabled = true;
-        loadGame.events.onInputOver.add(function(){loadGame.fill = '#AEAEAE';}, this);
+        loadGame.events.onInputOver.add(function(){loadGame.fill = '#AEAEAE';clicker.play();}, this);
         loadGame.events.onInputOut.add(function(){loadGame.fill = '#FFFFFF';}, this);
         
         settings = game.add.text(20, 240, "Settings", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         settings.alpha = 0;
         settings.inputEnabled = true;
-        settings.events.onInputOver.add(function(){settings.fill = '#AEAEAE';}, this);
+        settings.events.onInputOver.add(function(){settings.fill = '#AEAEAE';clicker.play();}, this);
         settings.events.onInputOut.add(function(){settings.fill = '#FFFFFF';}, this);
         
         about = game.add.text(20, 300, "About", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         about.alpha = 0;
         about.inputEnabled = true;
-        about.events.onInputOver.add(function(){about.fill = '#AEAEAE'; credits.alpha = 1;}, this);
+        about.events.onInputOver.add(function(){about.fill = '#AEAEAE'; credits.alpha = 1;clicker.play();}, this);
         about.events.onInputOut.add(function(){about.fill = '#FFFFFF';credits.alpha = 0;}, this);
         about.events.onInputDown.add(function(){
-                                             actionOnClick();
+                                     
                                              }, this);
         
         
@@ -118,7 +127,7 @@ bootState.prototype =
         
         
         
-        game.time.events.add(10000, function() {
+        game.time.events.add(9000, function() {
                              game.add.tween(title).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
                              
                              game.add.tween(newGame).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
@@ -135,6 +144,12 @@ bootState.prototype =
         credits.scale.x = 1;
         credits.scale.y = 1;
         
+        
+        
+        // Play music
+        music = game.add.audio('music');
+        music.addMarker('soundtrack',34,50,1,true);
+        music.play('soundtrack');
         
         
         
@@ -162,6 +177,7 @@ function test() {
 function actionOnClick () {
     console.log('button clicked, starting main game');
     game.state.start('gameState');
+    music.stop();
 }
 
 function doSetup()
