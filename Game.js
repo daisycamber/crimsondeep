@@ -99,19 +99,19 @@ bootState.prototype =
         loadGame = game.add.text(20, 180, "Load Game", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         loadGame.alpha = 0;
         loadGame.inputEnabled = true;
-        loadGame.events.onInputOver.add(function(){loadGame.fill = '#AEAEAE';clicker.play();}, this);
+        loadGame.events.onInputOver.add(function(){loadGame.fill = '#AEAEAE';if(menuOpen)clicker.play();}, this);
         loadGame.events.onInputOut.add(function(){loadGame.fill = '#FFFFFF';}, this);
         
         settings = game.add.text(20, 240, "Settings", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         settings.alpha = 0;
         settings.inputEnabled = true;
-        settings.events.onInputOver.add(function(){settings.fill = '#AEAEAE';clicker.play();}, this);
+        settings.events.onInputOver.add(function(){settings.fill = '#AEAEAE';if(menuOpen)clicker.play();}, this);
         settings.events.onInputOut.add(function(){settings.fill = '#FFFFFF';}, this);
         
         about = game.add.text(20, 300, "About", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         about.alpha = 0;
         about.inputEnabled = true;
-        about.events.onInputOver.add(function(){about.fill = '#AEAEAE'; credits.alpha = 1;clicker.play();}, this);
+        about.events.onInputOver.add(function(){about.fill = '#AEAEAE'; if(menuOpen)credits.alpha = 1;if(menuOpen)clicker.play();}, this);
         about.events.onInputOut.add(function(){about.fill = '#FFFFFF';credits.alpha = 0;}, this);
         about.events.onInputDown.add(function(){
                                      
@@ -129,12 +129,12 @@ bootState.prototype =
         
         game.time.events.add(9000, function() {
                              game.add.tween(title).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
-                             
                              game.add.tween(newGame).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
                              game.add.tween(loadGame).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
                              game.add.tween(settings).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
                              game.add.tween(about).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
                              game.add.tween(logo).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
+                             menuOpen = true;
                              }, this);
         
         
@@ -227,7 +227,7 @@ gameState.prototype =
         
         game.camera.follow(player);
         
-        game.physics.arcade.gravity.y = 500;
+        game.physics.arcade.gravity.y = 200;
         
         cursors = game.input.keyboard.createCursorKeys();
         
