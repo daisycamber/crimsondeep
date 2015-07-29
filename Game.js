@@ -57,7 +57,7 @@ bootState.prototype =
         filter = game.add.filter('Tunnel', 800, 600, background.texture);
         
         //	You have the following value to play with (default value is 2.0):
-        filter.origin = 4.0;
+        filter.origin = 2.0;
         
         background.filters = [filter];
         
@@ -227,7 +227,7 @@ gameState.prototype =
         
         game.camera.follow(player);
         
-        game.physics.arcade.gravity.y = 200;
+        game.physics.arcade.gravity.y = 300;
         
         cursors = game.input.keyboard.createCursorKeys();
         
@@ -418,7 +418,7 @@ function placeOres(tile, quantity, top, bottom) {
 
 
 var drillTimer = 0;
-var drillingTime = 1000;
+var drillingTime = 2000;
 var breakPoint = .2;
 
 // 0 is not, 1 is drilling, 2 is tile broken
