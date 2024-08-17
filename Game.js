@@ -366,13 +366,6 @@ class GameScene extends Phaser.Scene {
         //game.debug.bodyInfo(player, 32, 32);
     }
 }
-
-game.state.add('gameState', gameState);
-
-
-
-
-game.state.start('bootState');
 //game.state.start('bootState');
 
 
