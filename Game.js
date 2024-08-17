@@ -25,7 +25,7 @@ class BootScene extends Phaser.Scene {
         this.load.image('logo', '/logo.png');
         this.load.image('about', '/credits.png');
         this.load.audio('music', '/soundtrack.mp3');
-        this.load.audio('click', '/click.mp3');        
+       // this.load.audio('click', '/click.mp3');        
         // Load neccesary assets
         console.log("Loading...");
         this.load.tilemapTiledJSON('map', '/map1.json');
@@ -39,7 +39,7 @@ class BootScene extends Phaser.Scene {
     // Create boot screen
     create() {
         
-        clicker = this.sound.add('click');
+       // clicker = this.sound.add('click');
         
         // For loading screen
         background = this.add.sprite(0, 0, 'texture');
