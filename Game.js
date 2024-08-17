@@ -19,18 +19,18 @@ class BootScene extends Phaser.Scene {
     // Preload assets for boot
     preload () {
         // For loading screen
-        game.load.image('texture', 'ooze.png');
+        game.load.image('texture', '/ooze.png');
         game.load.script('filter', 'https://cdn.rawgit.com/photonstorm/phaser/master/filters/Tunnel.js');
-        game.load.image('logo', 'logo.png');
-        game.load.image('about', 'credits.png');
-        game.load.audio('music', 'soundtrack.mp3');
-        game.load.audio('click', 'click.mp3');        
+        game.load.image('logo', '/logo.png');
+        game.load.image('about', '/credits.png');
+        game.load.audio('music', '/soundtrack.mp3');
+        game.load.audio('click', '/click.mp3');        
         // Load neccesary assets
         console.log("Loading...");
-        game.load.tilemap('map', 'map1.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('kenney', 'kenney.png');
-        game.load.spritesheet('drill', 'drill.png',123, 90); // or 123
-        game.load.audio('stairway', 'Stairway_To_Heaven.mp3');
+        game.load.tilemap('map', '/map1.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('kenney', '/kenney.png');
+        game.load.spritesheet('drill', '/drill.png',123, 90); // or 123
+        game.load.audio('stairway', '/Stairway_To_Heaven.mp3');
         console.log("...done.");
         // All assets loaded
     }
