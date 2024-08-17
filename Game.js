@@ -30,7 +30,7 @@ class BootScene extends Phaser.Scene {
         game.load.audio('stairway', 'Stairway_To_Heaven.mp3');
         console.log("...done.");
         // All assets loaded
-    },
+    }
     // Create boot screen
     create() {
         
