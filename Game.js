@@ -12,8 +12,7 @@ var settings;
 var about;
 
 var clicker;
-class BootScene extends Phaser.Scene;
-{
+class BootScene extends Phaser.Scene {
     // Preload assets for boot
     preload:function() {
         // For loading screen
