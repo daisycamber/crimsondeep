@@ -39,7 +39,7 @@ class BootScene extends Phaser.Scene {
     // Create boot screen
     create() {
         
-        clicker = this.add.audio('click');
+        clicker = this.sound.add('click');
         
         // For loading screen
         background = this.add.sprite(0, 0, 'texture');
@@ -139,7 +139,7 @@ class BootScene extends Phaser.Scene {
         
         
         // Play music
-        music = this.add.audio('music');
+        music = this.sound.add('music');
         music.addMarker('soundtrack',34,50,1,true);
         music.play('soundtrack');
         
@@ -236,7 +236,7 @@ class GameScene extends Phaser.Scene {
         generateOres();
         
         // Play music
-        music = this.add.audio('stairway');
+        music = this.sound.add('stairway');
         music.play();
         
         inventory = newFilledArray(200,0);
