@@ -19,32 +19,32 @@ class BootScene extends Phaser.Scene {
     // Preload assets for boot
     preload () {
         // For loading screen
-        game.load.image('texture', '/ooze.png');
-        game.load.script('filter', 'https://cdn.rawgit.com/photonstorm/phaser/master/filters/Tunnel.js');
-        game.load.image('logo', '/logo.png');
-        game.load.image('about', '/credits.png');
-        game.load.audio('music', '/soundtrack.mp3');
-        game.load.audio('click', '/click.mp3');        
+        this.load.image('texture', '/ooze.png');
+        this.load.script('filter', 'https://cdn.rawgit.com/photonstorm/phaser/master/filters/Tunnel.js');
+        this.load.image('logo', '/logo.png');
+        this.load.image('about', '/credits.png');
+        this.load.audio('music', '/soundtrack.mp3');
+        this.load.audio('click', '/click.mp3');        
         // Load neccesary assets
         console.log("Loading...");
-        game.load.tilemap('map', '/map1.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('kenney', '/kenney.png');
-        game.load.spritesheet('drill', '/drill.png',123, 90); // or 123
-        game.load.audio('stairway', '/Stairway_To_Heaven.mp3');
+        this.load.tilemap('map', '/map1.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.image('kenney', '/kenney.png');
+        this.load.spritesheet('drill', '/drill.png',123, 90); // or 123
+        this.load.audio('stairway', '/Stairway_To_Heaven.mp3');
         console.log("...done.");
         // All assets loaded
     }
     // Create boot screen
     create() {
         
-        clicker = game.add.audio('click');
+        clicker = this.add.audio('click');
         
         // For loading screen
-        background = game.add.sprite(0, 0, 'texture');
+        background = this.add.sprite(0, 0, 'texture');
         background.width = 800;
         background.height = 600;
         
-        filter = game.add.filter('Tunnel', 800, 600, background.texture);
+        filter = this.add.filter('Tunnel', 800, 600, background.texture);
         
         //	You have the following value to play with (default value is 2.0):
         filter.origin = 2.0;
@@ -54,30 +54,30 @@ class BootScene extends Phaser.Scene {
         var menuOpen = false;
         
         
-        text = game.add.text(game.world.centerX, game.world.centerY, "Holton Studios Presents", { font: "65px Arial", fill: "#ffffff", align: "center" });
+        text = this.add.text(this.world.centerX, this.world.centerY, "Holton Studios Presents", { font: "65px Arial", fill: "#ffffff", align: "center" });
         text.anchor.setTo(0.5, 0.5);
         text.alpha = 0;
         
-        title = game.add.text(20, 20, "Crimson Deep", { font: "bold 100px Arial", fill: "#ffffff", align: "center"});
+        title = this.add.text(20, 20, "Crimson Deep", { font: "bold 100px Arial", fill: "#ffffff", align: "center"});
         title.alpha = 0;
 
-        game.time.events.add(500, function() {
-                             game.add.tween(text).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
+        this.time.events.add(500, function() {
+                             this.add.tween(text).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
                              }, this);
-        game.time.events.add(4000, function() {
-         game.add.tween(text).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
+        this.time.events.add(4000, function() {
+         this.add.tween(text).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
          }, this);
         
-        game.time.events.add(4500, function() {
+        this.time.events.add(4500, function() {
                              text.text = "A Jasper Holton \nProduction";
-                             game.add.tween(text).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
+                             this.add.tween(text).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
                              }, this);
-        game.time.events.add(7500, function() {
-                             game.add.tween(text).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
+        this.time.events.add(7500, function() {
+                             this.add.tween(text).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
                              }, this);
         
         
-        newGame = game.add.text(20, 120, "New Game", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
+        newGame = this.add.text(20, 120, "New Game", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         newGame.alpha = 0;
         newGame.inputEnabled = true;
         newGame.events.onInputOver.add(function(){newGame.fill = '#AEAEAE'; if(menuOpen) clicker.play();}, this);
@@ -86,19 +86,19 @@ class BootScene extends Phaser.Scene {
                                        actionOnClick();
                                        }, this);
         
-        loadGame = game.add.text(20, 180, "Load Game", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
+        loadGame = this.add.text(20, 180, "Load Game", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         loadGame.alpha = 0;
         loadGame.inputEnabled = true;
         loadGame.events.onInputOver.add(function(){loadGame.fill = '#AEAEAE';if(menuOpen)clicker.play();}, this);
         loadGame.events.onInputOut.add(function(){loadGame.fill = '#FFFFFF';}, this);
         
-        settings = game.add.text(20, 240, "Settings", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
+        settings = this.add.text(20, 240, "Settings", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         settings.alpha = 0;
         settings.inputEnabled = true;
         settings.events.onInputOver.add(function(){settings.fill = '#AEAEAE';if(menuOpen)clicker.play();}, this);
         settings.events.onInputOut.add(function(){settings.fill = '#FFFFFF';}, this);
         
-        about = game.add.text(20, 300, "About", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
+        about = this.add.text(20, 300, "About", { font: "bold 60px Arial", fill: "#ffffff", align: "center"});
         about.alpha = 0;
         about.inputEnabled = true;
         about.events.onInputOver.add(function(){about.fill = '#AEAEAE'; if(menuOpen)credits.alpha = 1;if(menuOpen)clicker.play();}, this);
@@ -108,7 +108,7 @@ class BootScene extends Phaser.Scene {
                                              }, this);
         
         
-        var logo = game.add.sprite(540, 430, 'logo');
+        var logo = this.add.sprite(540, 430, 'logo');
         logo.anchor.setTo(0.5, 0.5);
         logo.alpha = 0;
         logo.scale.x = .7;
@@ -117,19 +117,19 @@ class BootScene extends Phaser.Scene {
         
         
         
-        game.time.events.add(9000, function() {
-                             game.add.tween(title).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
-                             game.add.tween(newGame).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
-                             game.add.tween(loadGame).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
-                             game.add.tween(settings).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
-                             game.add.tween(about).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
-                             game.add.tween(logo).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
+        this.time.events.add(9000, function() {
+                             this.add.tween(title).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
+                             this.add.tween(newGame).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
+                             this.add.tween(loadGame).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
+                             this.add.tween(settings).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
+                             this.add.tween(about).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
+                             this.add.tween(logo).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
                              menuOpen = true;
                              }, this);
         
         
         
-        var credits = game.add.sprite(10, 10, 'about');
+        var credits = this.add.sprite(10, 10, 'about');
         credits.alpha = 0;
         credits.scale.x = 1;
         credits.scale.y = 1;
@@ -137,7 +137,7 @@ class BootScene extends Phaser.Scene {
         
         
         // Play music
-        music = game.add.audio('music');
+        music = this.add.audio('music');
         music.addMarker('soundtrack',34,50,1,true);
         music.play('soundtrack');
         
@@ -200,7 +200,7 @@ class GameScene extends Phaser.Scene {
         console.log("Create2");
         console.log("Started");
         // Main game setup
-        map = game.add.tilemap('map');
+        map = this.add.tilemap('map');
         
         map.addTilesetImage('kenney');
         
@@ -210,8 +210,8 @@ class GameScene extends Phaser.Scene {
         
         map.setCollisionByExclusion([1,20]);
         
-        player = game.add.sprite(260, 1650, 'drill');
-        game.physics.enable(player);
+        player = this.add.sprite(260, 1650, 'drill');
+        this.physics.enable(player);
         player.body.bounce.set(0.1);
         player.body.tilePadding.set(32);
         player.body.collideWorldBounds = true;
@@ -225,16 +225,16 @@ class GameScene extends Phaser.Scene {
         player.animations.add('drillR', [69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93], 25000/drillingTime, true);
         
         
-        game.camera.follow(player);
+        this.camera.follow(player);
         
-        game.physics.arcade.gravity.y = 300;
+        this.physics.arcade.gravity.y = 300;
         
-        cursors = game.input.keyboard.createCursorKeys();
+        cursors = this.input.keyboard.createCursorKeys();
         
         generateOres();
         
         // Play music
-        music = game.add.audio('stairway');
+        music = this.add.audio('stairway');
         music.play();
         
         inventory = newFilledArray(200,0);
@@ -244,22 +244,22 @@ class GameScene extends Phaser.Scene {
     update() {
         
         // Handle collisions
-        game.physics.arcade.collide(player, layer);
+        this.physics.arcade.collide(player, layer);
         
         
         
         // If the up (jump) button is pressed
-        if (game.input.keyboard.isDown(Phaser.Keyboard.W) /*&& player.body.onFloor()*/)
+        if (this.input.keyboard.isDown(Phaser.Keyboard.W) /*&& player.body.onFloor()*/)
         {
             player.body.velocity.y = -300; // Jump
         }
         // If the down (drill) button is pressed, then run this piece of code
-        else if (game.input.keyboard.isDown(Phaser.Keyboard.S))
+        else if (this.input.keyboard.isDown(Phaser.Keyboard.S))
         {
-            if(drillStage == 0 && (game.time.now > drillTimer + drillingTime) && player.body.onFloor()) startDrilling('down');
+            if(drillStage == 0 && (this.time.now > drillTimer + drillingTime) && player.body.onFloor()) startDrilling('down');
             
             // If block is ready to be broken
-            if(drillStage == 1 && game.time.now > drillTimer + drillingTime * breakPoint) {
+            if(drillStage == 1 && this.time.now > drillTimer + drillingTime * breakPoint) {
                 
                 mineTile(layer.getTileX(player.x + xOffset),layer.getTileY(player.y + yOffset) + 1);
                 
@@ -278,16 +278,16 @@ class GameScene extends Phaser.Scene {
         }
         
         // Move left
-        if (game.input.keyboard.isDown(Phaser.Keyboard.A)) {
+        if (this.input.keyboard.isDown(Phaser.Keyboard.A)) {
             facing = 'left';
             
             // Check if we should drill, or if we should walk
-            if(player.body.blocked.left && (game.time.now > drillTimer + drillingTime))
+            if(player.body.blocked.left && (this.time.now > drillTimer + drillingTime))
             {
-                if(drillStage == 0 && (game.time.now > drillTimer + drillingTime) && player.body.onFloor()) startDrilling('left');
+                if(drillStage == 0 && (this.time.now > drillTimer + drillingTime) && player.body.onFloor()) startDrilling('left');
                 
                 // If block is ready to be broken
-                if(drillStage == 1 && game.time.now > drillTimer + drillingTime * breakPoint) {
+                if(drillStage == 1 && this.time.now > drillTimer + drillingTime * breakPoint) {
                     
                     mineTile(layer.getTileX(player.x + xOffset) - 1,layer.getTileY(player.y + yOffset));
                     
@@ -308,16 +308,16 @@ class GameScene extends Phaser.Scene {
         }
         
         // Move right
-        else if (game.input.keyboard.isDown(Phaser.Keyboard.D)) {
+        else if (this.input.keyboard.isDown(Phaser.Keyboard.D)) {
             facing = 'right';
             
             // Check if we should drill, or if we should walk
-            if(player.body.blocked.right && (game.time.now > drillTimer + drillingTime))
+            if(player.body.blocked.right && (this.time.now > drillTimer + drillingTime))
             {
-                if(drillStage == 0 && (game.time.now > drillTimer + drillingTime) && player.body.onFloor()) startDrilling('right');
+                if(drillStage == 0 && (this.time.now > drillTimer + drillingTime) && player.body.onFloor()) startDrilling('right');
                 
                 // If block is ready to be broken
-                if(drillStage == 1 && game.time.now > drillTimer + drillingTime * breakPoint) {
+                if(drillStage == 1 && this.time.now > drillTimer + drillingTime * breakPoint) {
                     
                     mineTile(layer.getTileX(player.x + xOffset) + 1,layer.getTileY(player.y + yOffset));
                     
@@ -338,7 +338,7 @@ class GameScene extends Phaser.Scene {
             
         }
         // If nothing needs to be animated, stop animations.
-        else if((!game.input.keyboard.isDown(Phaser.Keyboard.D) && !game.input.keyboard.isDown(Phaser.Keyboard.A)) && drillStage == 0) {
+        else if((!this.input.keyboard.isDown(Phaser.Keyboard.D) && !this.input.keyboard.isDown(Phaser.Keyboard.A)) && drillStage == 0) {
             player.animations.stop();
             player.body.velocity.x = 0;
         }
@@ -355,13 +355,12 @@ class GameScene extends Phaser.Scene {
     render(){
         //  Useful debug things you can turn on to see what's happening
         
-        // game.debug.spriteBounds(sprite);
-        // game.debug.cameraInfo(game.camera, 32, 32);
-        //game.debug.body(player);
-        //game.debug.bodyInfo(player, 32, 32);
+        // this.debug.spriteBounds(sprite);
+        // this.debug.cameraInfo(this.camera, 32, 32);
+        //this.debug.body(player);
+        //this.debug.bodyInfo(player, 32, 32);
     }
 }
-//game.state.start('bootState');
 
 
 
