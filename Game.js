@@ -14,21 +14,14 @@ var about;
 var clicker;
 class BootScene extends Phaser.Scene {
     // Preload assets for boot
-    preload:function() {
+    preload () {
         // For loading screen
         game.load.image('texture', 'ooze.png');
         game.load.script('filter', 'https://cdn.rawgit.com/photonstorm/phaser/master/filters/Tunnel.js');
         game.load.image('logo', 'logo.png');
         game.load.image('about', 'credits.png');
         game.load.audio('music', 'soundtrack.mp3');
-        game.load.audio('click', 'click.mp3');
-        
-        //
-        
-        
-        
-        
-        
+        game.load.audio('click', 'click.mp3');        
         // Load neccesary assets
         console.log("Loading...");
         game.load.tilemap('map', 'map1.json', null, Phaser.Tilemap.TILED_JSON);
@@ -39,7 +32,7 @@ class BootScene extends Phaser.Scene {
         // All assets loaded
     },
     // Create boot screen
-    create:function() {
+    create() {
         
         clicker = game.add.audio('click');
         
@@ -149,7 +142,7 @@ class BootScene extends Phaser.Scene {
         
     },
     // Update boot screen
-    update:function() {
+    update() {
         filter.update();
         
         cycles++;
@@ -198,9 +191,9 @@ doSetup();
 
 class GameScene extends Phaser.Scene {
     // Not needed, game assets already loaded
-    preload:function() {},
+    preload() {},
     // Create gam
-    create:function() {
+    create() {
         console.log("Create2");
         console.log("Started");
         // Main game setup
@@ -245,7 +238,7 @@ class GameScene extends Phaser.Scene {
         
     },
     // Update game
-    update:function() {
+    update() {
         
         // Handle collisions
         game.physics.arcade.collide(player, layer);
@@ -356,7 +349,7 @@ class GameScene extends Phaser.Scene {
         checkFinishedDrilling();
     },
     
-    render:function(){
+    render(){
         //  Useful debug things you can turn on to see what's happening
         
         // game.debug.spriteBounds(sprite);
