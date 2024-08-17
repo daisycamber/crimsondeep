@@ -1,5 +1,5 @@
 // by Charlotte Grace Harper, 2013-2024
-// v0.10
+// v0.101
 var game;
 
 var cycles = 0;
@@ -21,7 +21,7 @@ class BootScene extends Phaser.Scene {
     preload () {
         // For loading screen
         this.load.image('texture', '/ooze.png');
-        this.load.script('filter', 'https://cdn.rawgit.com/photonstorm/phaser/master/filters/Tunnel.js');
+        this.load.script('filter', 'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/Tunnel.js');
         this.load.image('logo', '/logo.png');
         this.load.image('about', '/credits.png');
         this.load.audio('music', '/soundtrack.mp3');
