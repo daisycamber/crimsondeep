@@ -1,7 +1,3 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'tilegame');
-
-var bootState = function(game) {  };
-
 var cycles = 0;
 
 var background;
@@ -16,8 +12,7 @@ var settings;
 var about;
 
 var clicker;
-
-bootState.prototype =
+class BootScene extends Phaser.Scene;
 {
     // Preload assets for boot
     preload:function() {
@@ -176,23 +171,33 @@ function test() {
 
 function actionOnClick () {
     console.log('button clicked, starting main game');
-    game.state.start('gameState');
+    var config = {
+        type: Phaser.AUTO,
+        parent: 'tilegame',
+        width: 800,
+        height: 600,
+        scene: GameScene
+    };
+    
+    game = new Phaser.Game(config);
     music.stop();
 }
 
 function doSetup()
 {
+    var config = {
+        type: Phaser.AUTO,
+        parent: 'tilegame',
+        width: 800,
+        height: 600,
+        scene: BootScene
+    };
     
+    game = new Phaser.Game(config);
 }
+doSetup();
 
-
-game.state.add('bootState', bootState);
-
-
-var gameState = function(game) {  };
-
-gameState.prototype =
-{
+class GameScene extends Phaser.Scene {
     // Not needed, game assets already loaded
     preload:function() {},
     // Create gam
