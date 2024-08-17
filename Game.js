@@ -21,7 +21,7 @@ class BootScene extends Phaser.Scene {
     preload () {
         // For loading screen
         this.load.image('texture', '/ooze.png');
-        this.load.script('filter', 'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/Tunnel.js');
+        /*this.load.script('filter', 'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/Tunnel.js');*/
         this.load.image('logo', '/logo.png');
         this.load.image('about', '/credits.png');
         this.load.audio('music', '/soundtrack.mp3');
@@ -45,9 +45,9 @@ class BootScene extends Phaser.Scene {
         background = this.add.sprite(0, 0, 'texture');
         background.width = 800;
         background.height = 600;
-        
+        /*
         filter = this.add.filter('Tunnel', 800, 600, background.texture);
-        
+        */
         //	You have the following value to play with (default value is 2.0):
         filter.origin = 2.0;
         
