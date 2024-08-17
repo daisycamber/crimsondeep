@@ -1,3 +1,4 @@
+// by Charlotte Grace Harper, 2013-2024
 var game;
 
 var cycles = 0;
