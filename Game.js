@@ -27,9 +27,10 @@ class BootScene extends Phaser.Scene {
         this.load.audio('click', '/click.mp3');        
         // Load neccesary assets
         console.log("Loading...");
-        this.load.tilemap('map', '/map1.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemapTiledJSON('map', '/map1.json');
+ //       this.load.tilemap('map', '/map1.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('kenney', '/kenney.png');
-        this.load.spritesheet('drill', '/drill.png',123, 90); // or 123
+        this.load.spritesheet('drill', '/drill.png',{ frameWidth: 123, frameHeight: 90 }); // or 123
         this.load.audio('stairway', '/Stairway_To_Heaven.mp3');
         console.log("...done.");
         // All assets loaded
