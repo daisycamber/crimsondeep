@@ -1,3 +1,5 @@
+var game;
+
 var cycles = 0;
 
 var background;
@@ -140,7 +142,7 @@ class BootScene extends Phaser.Scene {
         
         
         
-    },
+    }
     // Update boot screen
     update() {
         filter.update();
@@ -347,7 +349,7 @@ class GameScene extends Phaser.Scene {
         checkStoppedDrilling();
         
         checkFinishedDrilling();
-    },
+    }
     
     render(){
         //  Useful debug things you can turn on to see what's happening
