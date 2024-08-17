@@ -193,7 +193,7 @@ doSetup();
 
 class GameScene extends Phaser.Scene {
     // Not needed, game assets already loaded
-    preload() {},
+    preload() {}
     // Create gam
     create() {
         console.log("Create2");
@@ -238,7 +238,7 @@ class GameScene extends Phaser.Scene {
         
         inventory = newFilledArray(200,0);
         
-    },
+    }
     // Update game
     update() {
         
